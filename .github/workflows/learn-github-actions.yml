@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: SonarQube Scan
+      - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
-        with:
+        env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
