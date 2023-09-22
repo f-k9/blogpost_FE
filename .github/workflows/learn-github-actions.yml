@@ -1,13 +1,12 @@
 name: Sonar Qube Scan
 on: [push, workflow_dispatch]
 jobs:
-  sonarqube:
+  sonarcloud:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        with:
-          projectBaseDir: blogpost_FE/src
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        uses: sonarsource/sonarcloud-github-action@master
+          with:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
