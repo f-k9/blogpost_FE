@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  frontend:
+    restart: unless-stopped
+    image: fkabb/blogpost:blogposts_fe
+    container_name: frontend
+    ports:
+      - 8902:80
+    depends_on:
+      - backend
+  backend:
+    restart: unless-stopped
+    image: fkabb/blogpost:blogposts_be
+    container_name: backend
+    ports:
+      - 28002:8080
+    depends_on:
+      - db
+  db:
+    restart: unless-stopped
+    image: "postgres:10-alpine"
+    container_name: blogpost_db
+    ports:
+      - "38002:5432"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
